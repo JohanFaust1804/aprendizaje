@@ -7,49 +7,62 @@ $query = mysqli_query($con, $sql);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="css/style.css" rel="stylesheet">
-  <title>user crud</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <title>Users CRUD</title>
 </head>
+
 <body>
     <div class="container">
-      <div class="user-form">
-        <h1>Create user</h1>
-          <form action="controller/insert.php" method="POST">
-            <input type="text", name="nombre", placeholder="Name" required>
-            <input type="text", name="lastname", placeholder="Lastname">
-            <input type="text", name="email", placeholder="Email">
-            <input type="text", name="pass", placeholder="Password">
-            <button type="submit">Create</button>
-          </form>
-      </div>
-      <div class="user-list">
-        <h1>Users</h1>
-        <table>
-          <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>email</th>
-            <th>password</th>
-            <th>action</th>
-          </tr>
-          <?php while($row = mysqli_fetch_array($query)){ ?>
-          <tr>
-            <td><?php echo $row['id']; ?></td>
-            <td><?php echo $row['nombre']; ?></td>
-            <td><?php echo $row['email']; ?></td>
-            <td><?php echo $row['pass']; ?></td>
-            <td>
-              <a href="controller/delete.php?id=<?php echo $row['id']; ?>">delete</a>
-            </td>
-          </tr>
-          <?php } ?>
-        </table>
-      </div>
-    </div>    
+        <div class="users-form">
+            <h1>Crear Usuario</h1>
+            <form action="controller/insert.php" method="POST">
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <input type="text" name="lastname" placeholder="Apellidos" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="pass" placeholder="Password" required>
+                <input type="email" name="email" placeholder="Email" required>
+
+                <input type="submit" value="Agregar">
+            </form>
+        </div>
+
+        <div class="users-table">
+            <h2>Usuarios Registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = mysqli_fetch_array($query)): ?>
+                        <tr>
+                            <td><?= $row['id'] ?></td>
+                            <td><?= $row['nombre'] ?></td>
+                            <td><?= $row['lastname'] ?></td>
+                            <td><?= $row['username'] ?></td>
+                            <td><?= $row['email'] ?></td>
+                            <td>
+                                <a href="update.php?id=<?= $row['id'] ?>" class="users-table--edit">Editar</a>
+                                <a href="controller/delete.php?id=<?= $row['id'] ?>" class="users-table--delete">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
+
 </html>
