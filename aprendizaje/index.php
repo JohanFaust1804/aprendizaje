@@ -19,7 +19,7 @@ $query = mysqli_query($con, $sql);
     <div class="container">
       <div class="user-form">
         <h1>Create user</h1>
-          <form action="controller/insert.php" method="POST"></form>
+          <form action="controller/insert.php" method="POST">
             <input type="text", name="nombre", placeholder="Name" required>
             <input type="text", name="lastname", placeholder="Lastname">
             <input type="text", name="email", placeholder="Email">
