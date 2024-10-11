@@ -1,13 +1,13 @@
 <?php
-  include "model/update.php";
-  $con = connection();
+  include ("model/update.php");
+  $con=connection();
 
-  $id = $_GET['id'];
+  $id=$_GET['id'];
 
-  $sql = "SELECT * FROM users WHERE id='$id'";
+  $sql="SELECT * FROM users WHERE id='$id'";
 
-  $query = mysqli_query($con, $sql);
-  $row = mysqli_fetch_array($query);
+  $query=mysqli_query($con, $sql);
+  $row=mysqli_fetch_array($query);
 ?>
 
 <!DOCTYPE html>
